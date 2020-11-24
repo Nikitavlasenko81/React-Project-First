@@ -7,11 +7,12 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
+
 function rerenderEntireTree(state) {
     ReactDOM.render(
         <BrowserRouter>
             <React.StrictMode>
-                <App/>
+                <App state ={state} dispatch = {store.dispatch.bind(store)} store = {store}/>
             </React.StrictMode>,
         </BrowserRouter>,
         document.getElementById('root')

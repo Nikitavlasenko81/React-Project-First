@@ -10,8 +10,6 @@ import Music from "./components/Music/Music";
 import {BrowserRouter, Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-// import styles from "./components/Profile/Profile.module.css";
-
 function App(props) {
     return (
         <div className="app-wrapper">

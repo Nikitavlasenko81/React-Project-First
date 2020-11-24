@@ -3,14 +3,8 @@ import styles from "./Dialogs.module.css"
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import DialogItem from "./DialogItem/DialogItem";
-import Massage from "./Massage/Massage";
-import Image from "react-bootstrap/Image";
-import Alert from "react-bootstrap/Alert";
-import Media from "react-bootstrap/Media";
 import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {addMassageActionCreator, apdateNewMassageTextActionCreator} from "../../Redux/dialogs-reducer";
 
 const Dialogs = (props) => {
     /*add new massage*/
