@@ -8,7 +8,6 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import {BrowserRouter, Route} from "react-router-dom";
-import {updateNewPostText} from "./Redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 // import styles from "./components/Profile/Profile.module.css";
@@ -20,10 +19,6 @@ function App(props) {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path="/dialogs" render={() => <DialogsContainer
-                    // dialogsData={props.state.dialogPage.dialogsData}
-                    // massageData={props.state.dialogPage.massageData}
-                    // newMassageText={props.state.dialogPage.newMassageText}
-                    // dispatch={props.dispatch}
                     store = {props.store}
                 />}/>
                 <Route path="/profile" render={() => <Profile
