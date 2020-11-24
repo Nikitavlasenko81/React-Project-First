@@ -1,0 +1,18 @@
+.nav{
+  font-size: 18px;
+  padding: 20px;
+  grid-area: nav;
+  background-color:#fff;
+  margin: 10px 5px;
+  border-radius: 10px;
+ }
+.nav a{
+  color: #88898a;
+}
+.nav a.active{
+  color: #65CEA7;
+}
+.nav a:hover{
+  text-decoration: none;
+  color: #65CEA7;
+}

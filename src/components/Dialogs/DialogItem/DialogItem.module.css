@@ -1,0 +1,13 @@
+a:hover{
+    text-decoration: none;
+}
+a.active {
+    font-weight: bold;
+}
+.lastVisit{
+    margin-bottom: 0;
+    color: #a5a5a5;
+    font-size: 10px;
+    font-weight: normal;
+    margin-top: 5px;
+}

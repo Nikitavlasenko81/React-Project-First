@@ -1,0 +1,48 @@
+.post{
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+.post p{
+    font-family: 'Abhaya Libre', serif;
+    font-size: 16px;
+}
+.infoOfPost li{
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+    font-family: 'Abhaya Libre', serif;
+    font-size: 13px;
+    color: #858686 !important;
+    font-weight: 500;
+}
+.infoOfPost ul{
+    padding-left: 4px;
+}
+.namePost{
+    font-family: 'Abhaya Libre', serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.textarea{
+    border-width: 0;
+    border-color: transparent;
+    border-radius: 0;
+    background-color: #f2f2f2;
+}
+.textarea:active{
+    background-color:#f2f2f2;
+
+}
+.formGroup{
+background-color: #f2f2f2;
+    margin-bottom: 30px !important;
+}
+.submitBtn{
+    background: none;
+    border: none;
+    color: #858686;
+    font-size: 18px;
+}
+.submitBtn:hover{
+    background-color: #1ab394;
+}
