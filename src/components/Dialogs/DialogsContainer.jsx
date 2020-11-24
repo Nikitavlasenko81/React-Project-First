@@ -6,8 +6,6 @@ import {addMassageActionCreator, apdateNewMassageTextActionCreator} from "../../
 import Dialogs from "./Dialogs";
 
 const DialogsContainer = (props) => {
-
-
     let stete = props.store.getState().dialogPage;
 
     let massageElements = stete.massageData.map(el => {
