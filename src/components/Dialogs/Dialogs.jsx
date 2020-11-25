@@ -5,10 +5,26 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
+import Massage from "./Massage/Massage";
+import DialogItem from "./DialogItem/DialogItem";
 
 const Dialogs = (props) => {
     /*add new massage*/
     let newMassageElement = React.createRef();
+
+    let massageElements = props.massageData.map(el => {
+        return (
+            <Alert variant="info">
+                <Massage massage={el.massage}/>
+            </Alert>
+        )
+    })
+    let DialogItemElements = props.dialogsData.map(el => {
+        return (
+            <DialogItem name={el.name} id={el.id} surname={el.surname}/>
+        )
+    })
 
     function onAddMassage() {
         let massageText = newMassageElement.current.value;
@@ -25,12 +41,12 @@ const Dialogs = (props) => {
         <Container>
             <Row>
                 <Col sm={3}>
-                    {props.DialogItemElements}
+                    {DialogItemElements}
                 </Col>
                 <Col sm={9}>
                     <Row>
                         <Col>
-                            {props.massageElements}
+                            {massageElements}
                         </Col>
                     </Row>
                     <Row>

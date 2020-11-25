@@ -2,7 +2,6 @@ import React from "react"
 import styles from "./WritePost.module.css"
 import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-
 function WritePost(props){
     let newPostElement = React.createRef()
 

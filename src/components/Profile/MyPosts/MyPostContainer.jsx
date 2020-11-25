@@ -1,25 +1,45 @@
 import React from "react"
-import Post from "./Post/Post";
 import MyPosts from "./MyPosts";
 import {addPostActionCreator, apdateNewPostTextActionCreator} from "../../../Redux/profile-reducer";
+import {addMassageActionCreator, apdateNewMassageTextActionCreator} from "../../../Redux/dialogs-reducer";
+import {connect} from "react-redux";
+import Dialogs from "../../Dialogs/Dialogs";
 
-function MyPostContainer(props){
-    let state = props.store.getState();
+// function MyPostContainer(props){
+//     let state = props.store.getState();
+//
+//  function addPost(){
+//         props.store.dispatch(addPostActionCreator());
+//     }
+//     function apdateNewPostText(text){
+//     props.store.dispatch(apdateNewPostTextActionCreator(text))
+//     }
+//
+//     return (
+//         <div>
+//             <MyPosts postData = {state.profilePage.postData} apdateNewPostText = {apdateNewPostText} addPost = {addPost} newPostText={state.profilePage.newPostText}/>
+//         </div>
+//     )
+// }
+//
 
- function addPost(){
-        props.store.dispatch(addPostActionCreator());
+
+let mapStateToProps = (state) => {
+    return {
+        postData: state.profilePage.postData,
+        newPostText: state.profilePage.newPostText,
     }
-    function apdateNewPostText(text){
-    props.store.dispatch(apdateNewPostTextActionCreator(text))
-    }
-    let postElement = state.profilePage.postData.map(el =>{
-        return <Post message ={el.massage}/>
-    });
-
-    return (
-        <div>
-            <MyPosts postElement = {postElement} apdateNewPostText = {apdateNewPostText} addPost = {addPost} newPostText={state.profilePage.newPostText}/>
-        </div>
-    )
 }
-export default MyPostContainer
+let mapDispatchToProps = (dispatch) => {
+    return {
+        apdateNewPostText: (text) => {
+            dispatch(apdateNewPostTextActionCreator(text))
+        },
+        addPost: () => {
+            dispatch(addPostActionCreator())
+        },
+    }
+}
+let newMyPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+
+export default newMyPostContainer
