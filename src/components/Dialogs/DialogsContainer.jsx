@@ -6,35 +6,6 @@ import {addMassageActionCreator, apdateNewMassageTextActionCreator} from "../../
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 
-// const DialogsContainer = (props) => {
-//     let stete = props.store.getState().dialogPage;
-//
-//     // let massageElements = stete.massageData.map(el => {
-//     //     return (
-//     //         <Alert variant="info">
-//     //             <MassageItem massage={el.massage}/>
-//     //         </Alert>
-//     //     )
-//     // })
-//     // let DialogItemElements = stete.dialogsData.map(el => {
-//     //     return (
-//     //         <DialogItem name={el.name} id={el.id} surname={el.surname}/>
-//     //     )
-//     // })
-//     function addMassage(massageText){
-//         props.store.dispatch(addMassageActionCreator(massageText));
-//
-//     }
-//
-//     function apdateNewMassageText(text) {
-//         props.store.dispatch(apdateNewMassageTextActionCreator(text))
-//     }
-//
-//     return (
-//         <Dialogs apdateNewMassageText = {apdateNewMassageText}  addMassage = {addMassage} massageData ={stete.massageData} dialogsData={stete.dialogsData} newMassageText={stete.newMassageText}/>
-//     )
-// }
-
 let mapStateToProps = (state) => {
     return {
         newMassageText: state.dialogPage.newMassageText,
