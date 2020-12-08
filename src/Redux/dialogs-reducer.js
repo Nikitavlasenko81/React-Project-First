@@ -2,35 +2,40 @@ import {returnLastItem} from "./store";
 
 let initialState = {
     dialogsData: [
-        {id: 1, name: "Dima", surname: "Andreev"},
-        {id: 2, name: "Irina", surname: "Tert"},
-        {id: 3, name: "Nikita", surname: "Las"},
-        {id: 4, name: "Andrei", surname: "Bolotov"},
-        {id: 5, name: "Arkadi", surname: "Gerer"},
+        {id: 1, name: "Dima", surname: "Andreev", massage:"MassageItem text..."},
+        {id: 2, name: "Irina", surname: "Tert", massage:"MassageItem text..."},
+        {id: 3, name: "Nikita", surname: "Las", massage:"MassageItem text..."},
+        {id: 4, name: "Andrei", surname: "Bolotov", massage:"MassageItem text..."},
+        {id: 5, name: "Arkadi", surname: "Gerer", massage:"MassageItem text..."},
     ],
         massageData: [
-    {id: 1, massage: "Massage text here id1"},
-    {id: 2, massage: "Massage text here id2"},
-    {id: 3, massage: "Massage text here id3"},
-    {id: 4, massage: "Massage text here id4"},
-    {id: 5, massage: "Massage text here id5"},
+    {id: 1, massage: "MassageItem text here id1", author:"Author Name"},
+    {id: 2, massage: "MassageItem text here id2", author:"Author Name"},
+    {id: 3, massage: "MassageItem text here id3", author:"Author Name"},
+    {id: 4, massage: "MassageItem text here id4", author:"Author Name"},
+    {id: 5, massage: "MassageItem text here id5", author:"Author Name"},
 ],
     newMassageText: ""
 }
 
 function dialogsReducer(state = initialState, action) {
     switch (action.type) {
-        case "CREATE-MASSAGE":
+        case "CREATE-MASSAGE": {
             let newMassage = {
                 id: returnLastItem(state.massageData).id + 1,
                 massage: state.newMassageText,
             };
-            state.massageData.push(newMassage);
-            state.newMassageText = ""
-            return state;
-        case "UPDATE-NEW-MASSAGE-TEXT":
-            state.newMassageText = action.newMassageText;
-            return state;
+            let stateCopy = {...state}
+            stateCopy.massageData = [...state.massageData]
+            stateCopy.massageData.push(newMassage);
+            stateCopy.newMassageText = ""
+            return stateCopy;
+        }
+        case "UPDATE-NEW-MASSAGE-TEXT":{
+            let stateCopy = {...state}
+            stateCopy.newMassageText = action.newMassageText;
+            return stateCopy;
+        }
         default:
             return state;
     }

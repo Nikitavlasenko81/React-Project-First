@@ -1,6 +1,6 @@
 import React from "react";
 // import DialogItem from "./DialogItem/DialogItem";
-// import Massage from "./Massage/Massage";
+// import MassageItem from "./MassageItem/MassageItem";
 // import Alert from "react-bootstrap/Alert";
 import {addMassageActionCreator, apdateNewMassageTextActionCreator} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
@@ -12,7 +12,7 @@ import {connect} from "react-redux";
 //     // let massageElements = stete.massageData.map(el => {
 //     //     return (
 //     //         <Alert variant="info">
-//     //             <Massage massage={el.massage}/>
+//     //             <MassageItem massage={el.massage}/>
 //     //         </Alert>
 //     //     )
 //     // })

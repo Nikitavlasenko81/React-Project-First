@@ -1,6 +1,5 @@
 .textarea{
-    border-width: 0;
-    border-color: transparent;
+    border-width: 1px;
     border-radius: 0;
     background-color: #ffffff;
 }

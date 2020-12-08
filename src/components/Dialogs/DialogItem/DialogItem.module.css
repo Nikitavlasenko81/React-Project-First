@@ -1,8 +1,13 @@
+h5{
+    font-size: 18px;
+    font-weight: normal;
+}
 a:hover{
     text-decoration: none;
 }
-a.active {
+a.active h5{
     font-weight: bold;
+    font-size: 18px;
 }
 .lastVisit{
     margin-bottom: 0;
@@ -10,4 +15,13 @@ a.active {
     font-size: 10px;
     font-weight: normal;
     margin-top: 5px;
+}
+.shortMessageText p{
+     font-size: 14px;
+    color: #4c4c4c;
+    margin: 0 15px 0 10px;
+
+}
+a .shortMessageText p.active {
+    font-weight: normal;
 }

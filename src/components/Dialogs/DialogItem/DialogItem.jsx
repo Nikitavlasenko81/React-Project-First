@@ -9,16 +9,19 @@ const DialogItem = (props) =>{
     let path = "/dialogs/"+ props.id;
     return(
             <NavLink to={path} activeClassName={styles.active}>
-                <Alert variant="info">
+                <Alert variant="info" className={'shadow'}>
                     <Row>
                         <img
-                            width={64}
-                            height={64}
+                            width={30}
+                            height={30}
                             className="mr-3"
                             src="https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png"
                             alt="Avatar"
                         />
-                        <p>{props.name} {props.surname}</p>
+                        <h5 className={styles.name}>{props.name} {props.surname}</h5>
+                    </Row>
+                    <Row className={styles.shortMessageText}>
+                        <p>{props.massage}</p>
                     </Row>
                     <Row>
                         <p className={styles.lastVisit}>Был в сети 20 мин</p>

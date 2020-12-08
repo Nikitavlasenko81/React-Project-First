@@ -14,11 +14,11 @@ let store = {
                 {id: 5, name: "Arkadi", surname: "Gerer"},
             ],
             massageData: [
-                {id: 1, massage: "Massage text here id1"},
-                {id: 2, massage: "Massage text here id2"},
-                {id: 3, massage: "Massage text here id3"},
-                {id: 4, massage: "Massage text here id4"},
-                {id: 5, massage: "Massage text here id5"},
+                {id: 1, massage: "MassageItem text here id1"},
+                {id: 2, massage: "MassageItem text here id2"},
+                {id: 3, massage: "MassageItem text here id3"},
+                {id: 4, massage: "MassageItem text here id4"},
+                {id: 5, massage: "MassageItem text here id5"},
             ],
             newMassageText: ""
         },

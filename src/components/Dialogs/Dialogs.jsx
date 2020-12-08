@@ -5,9 +5,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
-import Massage from "./Massage/Massage";
 import DialogItem from "./DialogItem/DialogItem";
+
+import MassageItem from "./MassageItem/MassageItem";
 
 const Dialogs = (props) => {
     /*add new massage*/
@@ -15,14 +15,12 @@ const Dialogs = (props) => {
 
     let massageElements = props.massageData.map(el => {
         return (
-            <Alert variant="info">
-                <Massage massage={el.massage}/>
-            </Alert>
+            <MassageItem massage={el.massage} author = {props.abort} key = {el.id}/>
         )
     })
     let DialogItemElements = props.dialogsData.map(el => {
         return (
-            <DialogItem name={el.name} id={el.id} surname={el.surname}/>
+            <DialogItem name={el.name} id={el.id} surname={el.surname} massage = {el.massage} key={el.id}/>
         )
     })
 
@@ -40,10 +38,10 @@ const Dialogs = (props) => {
     return (
         <Container>
             <Row>
-                <Col sm={3}>
+                <Col sm={4}>
                     {DialogItemElements}
                 </Col>
-                <Col sm={9}>
+                <Col sm={8}>
                     <Row>
                         <Col>
                             {massageElements}
@@ -58,8 +56,7 @@ const Dialogs = (props) => {
                                                   placeholder="Type you massage..." rows={3}
                                                   className={`mb-3 ${styles.textarea}`}/>
                                     <div className="clearfix">
-                                        <Button variant="light" className={`float-right mr-3`} onClick={onAddMassage}>Send
-                                            massage</Button>
+                                        <Button variant="light" className={`float-right mr-3`} onClick={onAddMassage}>Send massage</Button>
                                     </div>
                                 </Form.Group>
                             </Form>
