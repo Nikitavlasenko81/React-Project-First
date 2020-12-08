@@ -21,20 +21,18 @@ let initialState = {
 function dialogsReducer(state = initialState, action) {
     switch (action.type) {
         case "CREATE-MASSAGE": {
-            let newMassage = {
-                id: returnLastItem(state.massageData).id + 1,
-                massage: state.newMassageText,
-            };
-            let stateCopy = {...state}
-            stateCopy.massageData = [...state.massageData]
-            stateCopy.massageData.push(newMassage);
-            stateCopy.newMassageText = ""
-            return stateCopy;
+            let massage = state.newMassageText;
+            return {
+                ...state,
+                newMassageText: "",
+                massageData :[...state.massageData, {id: returnLastItem(state.massageData).id + 1, massage:massage,}]
+            }
         }
         case "UPDATE-NEW-MASSAGE-TEXT":{
-            let stateCopy = {...state}
-            stateCopy.newMassageText = action.newMassageText;
-            return stateCopy;
+            return {
+                ...state,
+                newMassageText : action.newMassageText,
+            }
         }
         default:
             return state;

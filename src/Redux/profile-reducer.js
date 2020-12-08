@@ -24,21 +24,21 @@ let initialState = {
 function profileReducer(state = initialState, action) {
     switch (action.type) {
         case "CREATE-POST": {
-            let id =  /*state.profilePage.postData[state.profilePage.postData.length - 1].id + 1;*/ returnLastItem(state.postData).id + 1;
-            let newPost = {
-                id: id,
-                massage: state.newPostText
-            };
-            let stateCopy = {...state};
-            stateCopy.postData = [...state.postData]
-            stateCopy.postData.push(newPost)
-            stateCopy.newPostText = ""
-            return stateCopy;
+
+            let massage = state.newPostText;
+            let id = returnLastItem(state.postData).id + 1
+
+            return {
+                ...state,
+                postData:[...state.postData, { id: id, massage: massage }],
+                newPostText: ""
+            }
         }
         case "UPDATE-NEW-POST-TEXT":{
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.newPostText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newPostText,
+            };
         }
         default:
             return state
