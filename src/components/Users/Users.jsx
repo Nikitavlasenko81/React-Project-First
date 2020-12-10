@@ -6,8 +6,6 @@ import * as axios from "axios";
 import defoultPhoto from "../../assets/images/defoultUser.png"
 import styles from "./Users.module.css"
 import Image from "react-bootstrap/Image";
-
-
  class Users extends React.Component{
     getUsers = () =>{
      if( this.props.users.length === 0){
