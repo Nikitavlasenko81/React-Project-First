@@ -15,7 +15,18 @@ const Dialogs = (props) => {
 
     let massageElements = props.massageData.map(el => {
         return (
-            <MassageItem massage={el.massage} author = {props.abort} key = {el.id}/>
+
+            (el.id % 2 === 0)
+                ? <Row>
+                    <Col>
+                        <div className = {"float-left"}><MassageItem massage={el.massage} author = {props.abort} key = {el.id}/></div>
+                    </Col>
+                </Row>
+                : <Row>
+                <Col>
+                    <div className = {"float-right"}><MassageItem massage={el.massage} author = {props.abort} key = {el.id}/></div>
+                </Col>
+                </Row>
         )
     })
     let DialogItemElements = props.dialogsData.map(el => {
@@ -36,17 +47,13 @@ const Dialogs = (props) => {
     }
 
     return (
-        <Container>
+        <Container fluid className = {"mt-3"} >
             <Row>
                 <Col sm={4}>
                     {DialogItemElements}
                 </Col>
                 <Col sm={8}>
-                    <Row>
-                        <Col>
                             {massageElements}
-                        </Col>
-                    </Row>
                     <Row>
                         <Col>
                             <Form>
