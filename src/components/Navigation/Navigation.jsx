@@ -1,7 +1,7 @@
 import React from "react"
-import styles from './Navbar.module.css'
+import styles from './Navigation.module.css'
 import {NavLink} from "react-router-dom";
-function Navbar(){
+function Navigation(){
     return (
         <nav className={styles.nav}>
           <div><NavLink to="/profile" activeClassName={styles.active}>Profile</NavLink></div>
@@ -14,4 +14,4 @@ function Navbar(){
 
     )
 }
-export default Navbar
+export default Navigation

@@ -10,9 +10,7 @@ import MyPostContainer from "./MyPosts/MyPostContainer";
 function Profile(props) {
     return (
         <div>
-            <Container>
                 <ProfileInfo infoData={props.store.getState().profilePage.infoData} />
-            </Container>
             <div><MyPostContainer store = {props.store}/>
             </div>
         </div>

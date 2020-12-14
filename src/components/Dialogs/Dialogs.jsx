@@ -15,7 +15,6 @@ const Dialogs = (props) => {
 
     let massageElements = props.massageData.map(el => {
         return (
-
             (el.id % 2 === 0)
                 ? <Row>
                     <Col>

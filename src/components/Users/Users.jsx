@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import {Col, Row} from "reactstrap/es";
 import Button from "react-bootstrap/Button";
-import defoultPhoto from "../../assets/images/defoultUser.png"
+import defoultPhoto from "../../assets/images/defoultUser.jpg"
 import styles from "./Users.module.css"
 import Image from "react-bootstrap/Image";
 import Pagination from "react-bootstrap/Pagination";
@@ -39,7 +39,8 @@ let Users = (props) => {
                                         <Col className={styles.avatar}>
                                             <Image
                                                 src={user.photos.small !== null ? user.photos.small : defoultPhoto}
-                                                thumbnail/>
+                                                thumbnail
+                                            />
                                         </Col>
                                     </Row>
                                     <Row>
