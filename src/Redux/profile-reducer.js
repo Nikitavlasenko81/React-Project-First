@@ -17,7 +17,8 @@ let initialState = {
             placeOfStudy: "KHAI",
         },
     ],
-    newPostText: ""
+    newPostText: "",
+    profile: null,
 }
 
 
@@ -40,6 +41,12 @@ function profileReducer(state = initialState, action) {
                 newPostText: action.newPostText,
             };
         }
+        case "SET-USER-PROFILE":{
+            return {
+                ...state,
+                profile: action.profile,
+            };
+        }
         default:
             return state
     }
@@ -55,6 +62,13 @@ export function apdateNewPostTextActionCreator(text) {
     return {
         type: "UPDATE-NEW-POST-TEXT",
         newPostText: text,
+    }
+}
+
+export function setUserProfile(profile) {
+    return {
+        type: "SET-USER-PROFILE",
+        profile,
     }
 }
 

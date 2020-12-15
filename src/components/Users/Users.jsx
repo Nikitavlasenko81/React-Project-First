@@ -6,6 +6,7 @@ import defoultPhoto from "../../assets/images/defoultUser.jpg"
 import styles from "./Users.module.css"
 import Image from "react-bootstrap/Image";
 import Pagination from "react-bootstrap/Pagination";
+import {NavLink} from "react-router-dom";
 
 let Users = (props) => {
 
@@ -34,6 +35,7 @@ let Users = (props) => {
                     props.users.map(user => {
                         return (
                             <Col sm={4}>
+                                <NavLink to = {`/profile/${user.id}`}>
                                 <Card className={"mb-4"}>
                                     <Row>
                                         <Col className={styles.avatar}>
@@ -69,6 +71,7 @@ let Users = (props) => {
                                         <small className="text-muted">Last updated 3 mins ago</small>
                                     </Card.Footer>
                                 </Card>
+                                </NavLink>
                             </Col>
                         )
                     })
