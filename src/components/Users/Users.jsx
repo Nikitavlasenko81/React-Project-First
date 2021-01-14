@@ -7,6 +7,7 @@ import styles from "./Users.module.css"
 import Image from "react-bootstrap/Image";
 import Pagination from "react-bootstrap/Pagination";
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 let Users = (props) => {
 
@@ -35,16 +36,18 @@ let Users = (props) => {
                     props.users.map(user => {
                         return (
                             <Col sm={4}>
-                                <NavLink to = {`/profile/${user.id}`}>
                                 <Card className={"mb-4"}>
+                                    <NavLink to = {`/profile/${user.id}`} st>
                                     <Row>
-                                        <Col className={styles.avatar}>
+                                        <Col>
                                             <Image
                                                 src={user.photos.small !== null ? user.photos.small : defoultPhoto}
                                                 thumbnail
+                                                style={{ width: '17rem' }}
                                             />
                                         </Col>
                                     </Row>
+                                    </NavLink>
                                     <Row>
                                         <Card.Body>
                                             <Card.Title>{user.name}</Card.Title>
@@ -57,11 +60,32 @@ let Users = (props) => {
                                         </Col>*/}
                                                 <Col md={4}>
                                                     {user.followed
-                                                        ? <Button onClick={() => {
-                                                            props.unfollow(user.id)
+                                                        ? <Button onClick={(e) => {
+                                                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{
+                                                                withCredentials: true,
+                                                                headers:{
+                                                                    "API-KEY" : "c05f61ef-80c8-4f42-b591-72ab0658de12",
+                                                                },
+                                                            })
+                                                                .then(response => {
+                                                                    if(response.data.resultCode === 0 ){
+                                                                        props.unfollow(user.id)
+                                                                    }
+                                                                });
                                                         }} variant="light">Follow</Button>
-                                                        : <Button onClick={() => {
-                                                            props.follow(user.id)
+
+                                                        : <Button onClick={(e) => {
+                                                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},{
+                                                                withCredentials: true,
+                                                                headers:{
+                                                                    "API-KEY" : "c05f61ef-80c8-4f42-b591-72ab0658de12",
+                                                                },
+                                                            })
+                                                                .then(response => {
+                                                                    if(response.data.resultCode === 0 ){
+                                                                        props.follow(user.id)
+                                                                    }
+                                                                });
                                                         }} variant="light">Unfollow</Button>}
                                                 </Col>
                                             </Row>
@@ -71,7 +95,6 @@ let Users = (props) => {
                                         <small className="text-muted">Last updated 3 mins ago</small>
                                     </Card.Footer>
                                 </Card>
-                                </NavLink>
                             </Col>
                         )
                     })

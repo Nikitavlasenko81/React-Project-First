@@ -1,25 +1,24 @@
 import './App.css';
 import React from "react";
 import "./App.css";
-import Profile from './components/Profile/Profile';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import {BrowserRouter, Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import Navigation from "./components/Navigation/Navigation";
-import Header from "./components/Header/Header";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 function App(props) {
     return (
 <Container>
     <Row className="header">
         <Col>
-            <Header/>
+            <HeaderContainer/>
         </Col>
     </Row>
     <Row className={"mt-3"}>
@@ -28,7 +27,7 @@ function App(props) {
         </Col>
         <Col sm={10} className="page">
             <Route path="/dialogs" render={() => <DialogsContainer store={props.store}/>}/>
-            <Route path="/profile" render={() => <ProfileContainer store={props.store}/>}/>
+            <Route path="/profile/:userId?" render={() => <ProfileContainer store={props.store}/>}/>
             <Route path="/users" render={() => <UsersContainer/>}/>
             <Route path="/news" component={News}/>
             <Route path="/music" component={Music}/>
