@@ -3,15 +3,14 @@ import * as axios from "axios";
 import Header from "./Header";
 import {setUsersDataActionCreator} from "../../Redux/auth-reducer";
 import {connect} from "react-redux";
+import {AuthAPI} from "../../api/api";
 
 class HeaderContainer extends React.Component{
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0//auth/me`,{
-            withCredentials: true,
-        })
-            .then(response => {
-                if(response.data.resultCode === 0){
-                    this.props.setUsersDataActionCreator(response.data.data.id, response.data.data.email, response.data.data.login)
+        AuthAPI.auth()
+            .then(data => {
+                if(data.resultCode === 0){
+                    this.props.setUsersDataActionCreator(data.data.id, data.data.email, data.data.login)
                 }
             });
     }
@@ -26,6 +25,7 @@ let mapStateToProps = (state) =>{
     return({
             isAuth: state.auth.isAuth,
             login: state.auth.login,
+            id: state.auth.id,
         }
     )
 

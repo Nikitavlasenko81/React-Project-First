@@ -2,7 +2,6 @@ import styles from "./Header.module.css";
 import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Button from "react-bootstrap/Button";
 import {NavLink} from "react-router-dom";
 
 let Header = (props) =>{
