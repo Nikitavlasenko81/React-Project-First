@@ -38,15 +38,15 @@ let Users = (props) => {
                             <Col sm={4}>
                                 <Card className={"mb-4"}>
                                     <NavLink to = {`/profile/${user.id}`} st>
-                                    <Row>
-                                        <Col>
-                                            <Image
-                                                src={user.photos.small !== null ? user.photos.small : defoultPhoto}
-                                                thumbnail
-                                                style={{ width: '17rem' }}
-                                            />
-                                        </Col>
-                                    </Row>
+                                        <Row>
+                                            <Col>
+                                                <Image
+                                                    src={user.photos.small !== null ? user.photos.small : defoultPhoto}
+                                                    thumbnail
+                                                    style={{ width: '17rem' }}
+                                                />
+                                            </Col>
+                                        </Row>
                                     </NavLink>
                                     <Row>
                                         <Card.Body>
@@ -57,21 +57,25 @@ let Users = (props) => {
                                             <Row>
                                                 <Col md={4}>
                                                     {user.followed
-                                                        ? <Button onClick={(e) => {
+                                                        ? <Button disabled={props.followingInProgress} onClick={(e) => {
+                                                            props.toggleFollowingProgress(true)
                                                             FollowUnfollowAPI.unfollow(user.id)
                                                                 .then(data => {
                                                                     if(data.resultCode === 0 ){
                                                                         props.unfollow(user.id)
                                                                     }
+                                                                    props.toggleFollowingProgress(false)
                                                                 });
                                                         }} variant="light">Follow</Button>
 
-                                                        : <Button onClick={(e) => {
+                                                        : <Button disabled={props.followingInProgress} onClick={(e) => {
+                                                            props.toggleFollowingProgress(true)
                                                             FollowUnfollowAPI.follow(user.id)
                                                                 .then(data => {
                                                                     if(data.resultCode === 0 ){
                                                                         props.follow(user.id)
                                                                     }
+                                                                    props.toggleFollowingProgress(false)
                                                                 });
                                                         }} variant="light">Unfollow</Button>}
                                                 </Col>
