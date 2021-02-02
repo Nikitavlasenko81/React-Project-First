@@ -8,6 +8,7 @@ import Image from "react-bootstrap/Image";
 import Pagination from "react-bootstrap/Pagination";
 import {NavLink} from "react-router-dom";
 import {FollowUnfollowAPI} from "../../api/api";
+import {follow, unfollow, unfollowSuccess} from "../../Redux/users-reducer";
 
 let Users = (props) => {
 
@@ -58,25 +59,11 @@ let Users = (props) => {
                                                 <Col md={4}>
                                                     {user.followed
                                                         ? <Button disabled={props.followingInProgress} onClick={(e) => {
-                                                            props.toggleFollowingProgress(true)
-                                                            FollowUnfollowAPI.unfollow(user.id)
-                                                                .then(data => {
-                                                                    if(data.resultCode === 0 ){
-                                                                        props.unfollow(user.id)
-                                                                    }
-                                                                    props.toggleFollowingProgress(false)
-                                                                });
+                                                            props.unfollow(user.id);
                                                         }} variant="light">Follow</Button>
 
                                                         : <Button disabled={props.followingInProgress} onClick={(e) => {
-                                                            props.toggleFollowingProgress(true)
-                                                            FollowUnfollowAPI.follow(user.id)
-                                                                .then(data => {
-                                                                    if(data.resultCode === 0 ){
-                                                                        props.follow(user.id)
-                                                                    }
-                                                                    props.toggleFollowingProgress(false)
-                                                                });
+                                                            props.follow(user.id);
                                                         }} variant="light">Unfollow</Button>}
                                                 </Col>
                                             </Row>

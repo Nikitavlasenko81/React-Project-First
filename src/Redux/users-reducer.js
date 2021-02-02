@@ -1,3 +1,5 @@
+import {FollowUnfollowAPI, UserAPI} from "../api/api";
+
 let initialState = {
     users: [],
     pageSize: 12,
@@ -52,42 +54,43 @@ const usersReducer = (state = initialState, action) => {
             return state
     }
 }
+// Action Creators
 
-export function followActionCreator(userId) {
+export function followSuccess(userId) {
     return {
         type: "FOLLOW",
         userId
     }
 }
 
-export function unfollowActionCreator(userId) {
+export function unfollowSuccess(userId) {
     return {
         type: "UNFOLLOW",
         userId
     }
 }
 
-export function setUsersActionCreator(users) {
+export function setUsers(users) {
     return {
         type: "SET_USERS",
         users
     }
 }
 
-export function setCurrentPageActionCreator(currentPage) {
+export function setCurrentPage(currentPage) {
     return {
         type: "SET_CURRENT_PAGE",
         currentPage
     }
 }
 
-export function setTotalUsersCountActionCreator(totalCount) {
+export function setTotalUsersCount(totalCount) {
     return {
         type: "SET_TOTAL_USERS_COUNT",
         totalCount
     }
 }
-export function isFetchingActionCreator(isFetching) {
+export function toggleIsFetching(isFetching) {
     return {
         type: "TOGGLE_IS_FETCHING",
         isFetching
@@ -97,6 +100,44 @@ export function toggleFollowingProgress(isFetching) {
     return {
         type: "TOGGLE_FOLLOWING_PROGRESS",
         isFetching
+    }
+}
+// Thaunk Creators
+
+export function getUsers(currentPage,pageSize) {
+    return (dispatch)=>{
+        dispatch(toggleIsFetching(true));
+        UserAPI.getUsers(currentPage,pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false));
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+            });
+    }
+}
+
+export function follow(userId) {
+    return (dispatch)=>{
+        dispatch(toggleFollowingProgress(true));
+        FollowUnfollowAPI.follow(userId)
+            .then(data => {
+                if(data.resultCode === 0 ){
+                    dispatch(followSuccess(userId));
+                }
+                dispatch(toggleFollowingProgress(false));
+            });
+    }
+}
+export function unfollow(userId) {
+    return (dispatch)=>{
+        dispatch(toggleFollowingProgress(true));
+        FollowUnfollowAPI.unfollow(userId)
+            .then(data => {
+                if(data.resultCode === 0 ){
+                    dispatch(unfollowSuccess(userId))
+                }
+                dispatch(toggleFollowingProgress(false));
+            });
     }
 }
 
