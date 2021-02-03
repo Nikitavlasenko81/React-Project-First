@@ -1,4 +1,5 @@
 import {returnLastItem} from "./store";
+import {ProfileAPI} from "../api/api";
 
 let initialState = {
     postData: [
@@ -51,7 +52,7 @@ function profileReducer(state = initialState, action) {
             return state
     }
 }
-
+// Action Creators
 export function addPostActionCreator() {
     return {
         type: "CREATE-POST",
@@ -69,6 +70,16 @@ export function setUserProfile(profile) {
     return {
         type: "SET-USER-PROFILE",
         profile,
+    }
+}
+// Thaunk Creators
+
+export function getUserProfile(userId,myId) {
+    return (dispatch) =>{
+        ProfileAPI.profile(userId === undefined ? myId : userId)
+            .then(response => {
+                dispatch(setUserProfile(response.data));
+            });
     }
 }
 

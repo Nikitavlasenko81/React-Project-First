@@ -1,3 +1,5 @@
+import {AuthAPI} from "../api/api";
+
 let initialState = {
     id: null,
     email: null,
@@ -17,7 +19,7 @@ const authReducer = (state = initialState, action) => {
             return state
     }
 }
-export function setUsersDataActionCreator(id,email,login) {
+export function setUsersData(id,email,login) {
     return {
         type: "SET_USER_DATA",
         data:{
@@ -32,6 +34,17 @@ export function isFetchingActionCreator(isFetching) {
         type: "TOGGLE_IS_FETCHING",
         isFetching
     }
+}
+export function getAuthUserData() {
+    return (dispatch) => {
+        AuthAPI.auth()
+            .then(data => {
+                if(data.resultCode === 0){
+                    dispatch(setUsersData(data.data.id, data.data.email, data.data.login))
+                }
+            });
+    }
+
 }
 
 

@@ -12,6 +12,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 function App(props) {
     return (
@@ -31,6 +32,7 @@ function App(props) {
             <Route path="/users" render={() => <UsersContainer/>}/>
             <Route path="/news" component={News}/>
             <Route path="/music" component={Music}/>
+            <Route path="/login" render={() => <Login/>}/>
         </Col>
     </Row>
 </Container>

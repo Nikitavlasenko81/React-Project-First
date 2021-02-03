@@ -6,8 +6,9 @@ const axiosInstans = axios.create ({
     headers:{
         "API-KEY" : "6786abcf-3311-470c-94ce-4d4577b4dfb7",
     },
-
 })
+
+
 export const UserAPI = {
     getUsers(currentPage = 1,pageSize = 10) {
         return axiosInstans.get(`users?page=${currentPage}&count=${pageSize}`)

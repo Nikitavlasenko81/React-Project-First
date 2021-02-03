@@ -1,13 +1,13 @@
 import React from "react";
-import styles from "./Profile.module.css";
-import MyPosts from "./MyPosts/MyPosts";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from "react-bootstrap/Container";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import Dialogs from "../Dialogs/Dialogs";
 import MyPostContainer from "./MyPosts/MyPostContainer";
+import Redirect from "react-router-dom/es/Redirect";
 
 function Profile(props) {
+    if(props.isAuth === false){
+        return <Redirect to={"/login"}/>;
+    }
     return (
         <div>
                 <ProfileInfo infoData={props.store.getState().profilePage.infoData} profile ={props.profile}/>
