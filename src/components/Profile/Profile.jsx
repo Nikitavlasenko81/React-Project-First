@@ -5,9 +5,6 @@ import MyPostContainer from "./MyPosts/MyPostContainer";
 import Redirect from "react-router-dom/es/Redirect";
 
 function Profile(props) {
-    if(props.isAuth === false) {
-        return <Redirect to={"/login"}/>;
-    }
     return (
         <div>
                 <ProfileInfo infoData={props.store.getState().profilePage.infoData} profile ={props.profile}/>

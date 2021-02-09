@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import {getUserProfile,} from "../../Redux/profile-reducer";
 import withRouter from "react-router-dom/es/withRouter";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../hoс/withAuthRedirect";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -23,6 +24,6 @@ let mapStateToProps = (state) =>{
         isAuth: state.auth.isAuth,
     }
 }
-
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)// еще одна компонента которая берет инфу из ссылки и закидывает в ProfileContainer
+let WithRedirectContainerComponent = withAuthRedirect(ProfileContainer)
+let WithUrlDataContainerComponent = withRouter(WithRedirectContainerComponent)// еще одна компонента которая берет инфу из ссылки и закидывает в ProfileContainer
 export default connect(mapStateToProps,{getUserProfile})(WithUrlDataContainerComponent) // теперь передаем обьект с actionCreator

@@ -1,10 +1,8 @@
 import React from "react";
-// import DialogItem from "./DialogItem/DialogItem";
-// import MassageItem from "./MassageItem/MassageItem";
-// import Alert from "react-bootstrap/Alert";
 import {addMassageActionCreator, apdateNewMassageTextActionCreator} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../hoс/withAuthRedirect";
 
 let mapStateToProps = (state) => {
     return {
@@ -23,7 +21,8 @@ let mapDispatchToProps = (dispatch) => {
         },
     }
 }
-let DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
+let DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 export default DialogsContainer;
 
