@@ -24,6 +24,8 @@ let mapStateToProps = (state) =>{
         isAuth: state.auth.isAuth,
     }
 }
+
+
 let WithRedirectContainerComponent = withAuthRedirect(ProfileContainer)
 let WithUrlDataContainerComponent = withRouter(WithRedirectContainerComponent)// еще одна компонента которая берет инфу из ссылки и закидывает в ProfileContainer
 export default connect(mapStateToProps,{getUserProfile})(WithUrlDataContainerComponent) // теперь передаем обьект с actionCreator
