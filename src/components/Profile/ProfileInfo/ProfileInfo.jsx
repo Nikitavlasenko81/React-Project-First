@@ -1,12 +1,11 @@
 import React from "react";
-import styles from "./ProfileInfo.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Preloader from "../../common/Preloader";
 import defoultPhoto from "../../../assets/images/defoultUser.jpg"
+import ProfileStatus from "./ProfileStatus"
 
 function ProfileInfo(props) {
     if (!props.profile) {
@@ -19,6 +18,7 @@ function ProfileInfo(props) {
                 </Col>
                 <Col>
                     <h1>{props.profile.fullName}</h1>
+                    <ProfileStatus status={"Hellow friend"}/>
                     <p>{props.profile.aboutMe}</p>
                     <ul>
                         <li>
