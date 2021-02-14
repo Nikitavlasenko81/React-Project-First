@@ -40,9 +40,16 @@ export const AuthAPI = {
     }
 }
 export const ProfileAPI = {
-    profile(id){
+    getProfile(id){
         return axiosInstans.get(`profile/${id}`)
+    },
+    getStatus(id){
+        return axiosInstans.get(`profile/status/${id}`)
+    },
+    updateStatus(status){
+        return axiosInstans.put(`profile/status`,{status: status});
     }
+
 }
 
 

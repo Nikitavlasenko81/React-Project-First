@@ -20,6 +20,7 @@ let initialState = {
     ],
     newPostText: "",
     profile: null,
+    status:"",
 }
 
 
@@ -48,6 +49,12 @@ function profileReducer(state = initialState, action) {
                 profile: action.profile,
             };
         }
+        case "SET-USER-STATUS":{
+            return {
+                ...state,
+                status: action.status,
+            };
+        }
         default:
             return state
     }
@@ -72,15 +79,40 @@ export function setUserProfile(profile) {
         profile,
     }
 }
+export function setUserStatus(status) {
+    return {
+        type: "SET-USER-STATUS",
+        status,
+    }
+}
 // Thaunk Creators
 
-export function getUserProfile(userId,myId) {
+export function getUserProfile(userId) {
     return (dispatch) =>{
-        ProfileAPI.profile(userId === undefined ? myId : userId)
+        ProfileAPI.getProfile(userId)
             .then(response => {
                 dispatch(setUserProfile(response.data));
             });
     }
 }
+export function getUserStatus(userId) {
+    return (dispatch) =>{
+        ProfileAPI.getStatus(userId)
+            .then(response => {
+                dispatch(setUserStatus(response.data));
+            });
+    }
+}
+export function updateUserStatus(status) {
+    return (dispatch) =>{
+        ProfileAPI.updateStatus(status)
+            .then(response => {
+                if (response.data.resultCode === 0){
+                    dispatch(setUserStatus(status));
+                }
+            });
+    }
+}
+
 
 export default profileReducer;

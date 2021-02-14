@@ -18,7 +18,7 @@ function ProfileInfo(props) {
                 </Col>
                 <Col>
                     <h1>{props.profile.fullName}</h1>
-                    <ProfileStatus status={"Hellow friend"}/>
+                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
                     <p>{props.profile.aboutMe}</p>
                     <ul>
                         <li>
