@@ -28,20 +28,13 @@ function profileReducer(state = initialState, action) {
     switch (action.type) {
         case "CREATE-POST": {
 
-            let massage = state.newPostText;
+            let massage = action.postText;
             let id = returnLastItem(state.postData).id + 1
 
             return {
                 ...state,
                 postData:[...state.postData, { id: id, massage: massage }],
-                newPostText: ""
             }
-        }
-        case "UPDATE-NEW-POST-TEXT":{
-            return {
-                ...state,
-                newPostText: action.newPostText,
-            };
         }
         case "SET-USER-PROFILE":{
             return {
@@ -60,18 +53,13 @@ function profileReducer(state = initialState, action) {
     }
 }
 // Action Creators
-export function addPostActionCreator() {
+export function addPostActionCreator(postText) {
     return {
         type: "CREATE-POST",
+        postText: postText
     }
 }
 
-export function apdateNewPostTextActionCreator(text) {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newPostText: text,
-    }
-}
 
 export function setUserProfile(profile) {
     return {

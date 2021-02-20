@@ -14,9 +14,6 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        apdateNewMassageText: (text) => {
-            dispatch(apdateNewMassageTextActionCreator(text))
-        },
         addMassage: (massageText) => {
             dispatch(addMassageActionCreator(massageText))
         },

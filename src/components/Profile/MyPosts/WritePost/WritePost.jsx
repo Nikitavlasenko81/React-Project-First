@@ -1,28 +1,25 @@
 import React from "react"
 import styles from "./WritePost.module.css"
-import {Form} from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import {Field, reduxForm} from "redux-form";
 function WritePost(props){
-    let newPostElement = React.createRef()
 
-    function onAddPost(){
-        props.addPost();
-    }
-
-    function onPostChange(){
-    let text = newPostElement.current.value;
-    props.apdateNewPostText(text);
+    function AddPost(values){
+        props.addPost(values.newPostElement)
     }
 
     return (
-        <Form>
-            <Form.Group contolId="exampleForm.ControlTextarea1" className={`mt-4 mb-3 ${styles.formGroup}`}>
-                <Form.Control value={props.newPostText} onChange={onPostChange} ref={newPostElement} as="textarea" placeholder="Type something..." rows={3} className={`mb-3 ${styles.textarea}`}/>
-                <div className="clearfix">
-                    <Button onClick={onAddPost} className={`float-right mr-3 mb-3 ${styles.submitBtn}`}>Submit</Button>
-                </div>
-            </Form.Group>
-        </Form>
+        <PostFormRedux onSubmit={AddPost}/>
     )
 }
+const AddPostForm = (props) =>{
+    return(
+        <form onSubmit={props.handleSubmit}>
+            <Field component={"textarea"} name={"newPostElement"} placeholder={"Type something..."}/>
+            <div className="clearfix">
+                <button className={`float-right mr-3 mb-3 ${styles.submitBtn}`}>Submit</button>
+            </div>
+        </form>
+    )
+}
+const PostFormRedux = reduxForm({form: "PostAddMassageForm"})(AddPostForm)
 export default WritePost

@@ -38,6 +38,9 @@ export const AuthAPI = {
                 return response.data;
             })
     }
+    // login(){
+    //     return
+    // }
 }
 export const ProfileAPI = {
     getProfile(id){
