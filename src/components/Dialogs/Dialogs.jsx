@@ -6,6 +6,9 @@ import Col from "react-bootstrap/Col";
 import DialogItem from "./DialogItem/DialogItem";
 import MassageItem from "./MassageItem/MassageItem";
 import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../common/FormsControls/FormsControls";
+import {required} from "../../utils/validators/validators";
+import Button from "react-bootstrap/cjs/Button";
 
 const Dialogs = (props) => {
     /*add new massage*/
@@ -15,19 +18,21 @@ const Dialogs = (props) => {
             (el.id % 2 === 0)
                 ? <Row>
                     <Col>
-                        <div className = {"float-left"}><MassageItem massage={el.massage} author = {props.abort} key = {el.id}/></div>
+                        <div className={"float-left"}><MassageItem massage={el.massage} author={props.abort} key={el.id}/>
+                        </div>
                     </Col>
                 </Row>
                 : <Row>
-                <Col>
-                        <div className = {"float-right"}><MassageItem massage={el.massage} author = {props.abort} key = {el.id}/></div>
-                </Col>
+                    <Col>
+                        <div className={"float-right"}><MassageItem massage={el.massage} author={props.abort} key={el.id}/>
+                        </div>
+                    </Col>
                 </Row>
         )
     })
     let DialogItemElements = props.dialogsData.map(el => {
         return (
-            <DialogItem name={el.name} id={el.id} surname={el.surname} massage = {el.massage} key={el.id}/>
+            <DialogItem name={el.name} id={el.id} surname={el.surname} massage={el.massage} key={el.id}/>
         )
     })
 
@@ -36,13 +41,13 @@ const Dialogs = (props) => {
     }
 
     return (
-        <Container fluid className = {"mt-3"}>
+        <Container fluid className={"mt-3"}>
             <Row>
                 <Col sm={4}>
                     {DialogItemElements}
                 </Col>
                 <Col sm={8}>
-                            {massageElements}
+                    {massageElements}
                     <Row>
                         <Col>
                             <AddMassageFormRedux onSubmit={addNewMassage}/>
@@ -54,14 +59,15 @@ const Dialogs = (props) => {
 
     )
 }
-const AddMassageForm = (props)=>{
-    return(
-            <form onSubmit={props.handleSubmit}>
-                <Field component={"textarea"} name={"newMassageElement"} placeholder={"Type you massage..."}/>
-                <div className="clearfix">
-                    <button className={`float-right mr-3`}>Send massage</button>
-                </div>
-            </form>
+const AddMassageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component={Textarea} name={"newMassageElement"} placeholder={"Type you massage..."}
+                   validate={[required]}/>
+            <div className="clearfix">
+                <Button variant="light" className={`float-right mt-3`} type="submit">Send massage</Button>
+            </div>
+        </form>
     )
 }
 const AddMassageFormRedux = reduxForm({form: "dialogAddMassageForm"})(AddMassageForm)

@@ -9,7 +9,7 @@ import {withAuthRedirect} from "../../hoс/withAuthRedirect";
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId){
+        if (!userId) {
             userId = this.props.myId
         }
         this.props.getUserProfile(userId);
@@ -18,20 +18,26 @@ class ProfileContainer extends React.Component {
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateUserStatus={this.props.updateUserStatus}/>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+                     updateUserStatus={this.props.updateUserStatus}/>
         )
     }
 }
-let mapStateToProps = (state) =>{
-    return{
+
+let mapStateToProps = (state) => {
+    return {
         profile: state.profilePage.profile,
-        myId : state.auth.id,
+        myId: state.auth.id,
         isAuth: state.auth.isAuth,
         status: state.profilePage.status
     }
 }
 
 
-// let WithRedirectContainerComponent = withAuthRedirect(ProfileContainer)
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)// еще одна компонента которая берет инфу из ссылки и закидывает в ProfileContainer
-export default connect(mapStateToProps,{getUserProfile,getUserStatus,updateUserStatus})(WithUrlDataContainerComponent) // теперь передаем обьект с actionCreator
+let WithRedirectContainerComponent = withAuthRedirect(ProfileContainer)
+let WithUrlDataContainerComponent = withRouter(WithRedirectContainerComponent)// еще одна компонента которая берет инфу из ссылки и закидывает в ProfileContainer
+export default connect(mapStateToProps, {
+    getUserProfile,
+    getUserStatus,
+    updateUserStatus
+})(WithUrlDataContainerComponent) // теперь передаем обьект с actionCreator
