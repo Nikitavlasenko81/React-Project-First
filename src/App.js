@@ -23,10 +23,10 @@ function App(props) {
         </Col>
     </Row>
     <Row className={"mt-3"}>
-        <Col sm={3}>
+        <Col sm={3} lg={2}>
             <Navigation/>
         </Col>
-        <Col sm={9} className="page">
+        <Col sm={9} lg={10} className="page">
             <Route path="/dialogs" render={() => <DialogsContainer store={props.store}/>}/>
             <Route path="/profile/:userId?" render={() => <ProfileContainer store={props.store}/>}/>
             <Route path="/users" render={() => <UsersContainer/>}/>

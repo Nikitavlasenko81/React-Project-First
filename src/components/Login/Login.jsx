@@ -3,23 +3,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {Field, reduxForm} from "redux-form";
+import {Input} from "../common/FormsControls/FormsControls";
+import {Form} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import {required} from "../../utils/validators/validators";
 
 function LoginForm(props) {
     return (
-        <form  onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={"Login"} name={"login"} component={"input"}/>
-            </div>
-            <div>
-                <Field placeholder={"Password"} name={"password"} component={"input"}/>
-            </div>
-            <div>
+        <Form onSubmit={props.handleSubmit}>
+            <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Field placeholder={"Login"} name={"login"} type={"email"} validate={[required]} component={Input}/>
+                <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                </Form.Text>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Field placeholder={"Login"} name={"password"} type={"password"}  validate={[required]} component={Input}/>
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+                {/*<Form.Check type="checkbox" label="Check me out" />*/}
                 <Field component={"input"} name={"rememberMe"} type={"checkbox"}/> remember me
-            </div>
-            <div>
-                <button>Login</button>
-            </div>
-        </form>
+            </Form.Group>
+            <Button type="submit" variant="primary" type="submit" size="lg" block>
+                Submit
+            </Button>
+        </Form>
     )
 }
 

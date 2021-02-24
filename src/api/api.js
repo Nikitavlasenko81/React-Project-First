@@ -34,13 +34,13 @@ export const FollowUnfollowAPI = {
 export const AuthAPI = {
     auth(){
         return axiosInstans.get('auth/me')
-            .then(response =>{
-                return response.data;
-            })
-    }
-    // login(){
-    //     return
-    // }
+    },
+    login(email,password,rememberMe = false){
+        return axiosInstans.post('auth/login',{email,password,rememberMe})
+    },
+    logout(){
+        return axiosInstans.delete('auth/login');
+    },
 }
 export const ProfileAPI = {
     getProfile(id){
