@@ -79,10 +79,12 @@ let Users = (props) => {
                 }
             </Row>
             <Row>
-                <Col>
-                    <Pagination className={styles.pagination}>
-                        {pages}
-                    </Pagination>
+                <Col sm={12}>
+                    <Row>
+                        <Pagination className={styles.pagination}>
+                            {pages}
+                        </Pagination>
+                    </Row>
                 </Col>
             </Row>
         </div>

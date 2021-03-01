@@ -7,6 +7,13 @@ import {Input} from "../common/FormsControls/FormsControls";
 import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {required} from "../../utils/validators/validators";
+import {login} from "../../Redux/auth-reducer";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoс/withAuthRedirect";
+import Dialogs from "../Dialogs/Dialogs";
+import Redirect from "react-router-dom/es/Redirect";
+import Alert from "react-bootstrap/Alert";
 
 function LoginForm(props) {
     return (
@@ -24,9 +31,11 @@ function LoginForm(props) {
                 <Field placeholder={"Login"} name={"password"} type={"password"}  validate={[required]} component={Input}/>
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox">
-                {/*<Form.Check type="checkbox" label="Check me out" />*/}
                 <Field component={"input"} name={"rememberMe"} type={"checkbox"}/> remember me
             </Form.Group>
+            <Alert show={!!props.error} variant={"danger"}>
+                {props.error}
+            </Alert>
             <Button type="submit" variant="primary" type="submit" size="lg" block>
                 Submit
             </Button>
@@ -39,7 +48,10 @@ const LoginReduxForm = reduxForm({form: "login"})(LoginForm)
 function Login(props) {
 
     const onSubmit = (formData) =>{
-        console.log(formData)
+        props.login(formData.login,formData.password,formData.rememberMe);
+    }
+    if(props.isAuth){
+        return <Redirect to={"/profile"}/>
     }
     return (
         <Container>
@@ -53,5 +65,11 @@ function Login(props) {
     )
 }
 
+const mapStateToProps= (state)=>({
+    isAuth: state.auth.isAuth
+})
 
-export default Login
+let loginContainer = compose(
+    connect(mapStateToProps,{login}),
+)(Login)
+export default loginContainer

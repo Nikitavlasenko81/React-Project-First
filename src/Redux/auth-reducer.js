@@ -1,4 +1,5 @@
 import {AuthAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 let initialState = {
     id: null,
@@ -13,7 +14,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.data,
-                // isAuth:true,
             }
         default:
             return state
@@ -38,7 +38,7 @@ export function isFetchingActionCreator(isFetching) {
 }
 export function getAuthUserData() {
     return (dispatch) => {
-        AuthAPI.auth()
+        return AuthAPI.auth()
             .then(data => {
                 if(data.resultCode === 0){
                     dispatch(setUsersData(data.data.id, data.data.email, data.data.login, true))
@@ -50,8 +50,23 @@ export function login(email,password,rememberMe) {
     return (dispatch) => {
         AuthAPI.login(email,password,rememberMe)
             .then(data => {
-                if(data.resultCode === 0){
+                if(data.data.resultCode === 0){
                     dispatch(getAuthUserData())
+                }else{
+                    let massage = data.data.messages.length > 0
+                        ? data.data.messages[0]
+                        : "some Error"
+                    dispatch(stopSubmit("login", {_error: massage}))
+                }
+            });
+    }
+}
+export function logout() {
+    return (dispatch) => {
+        AuthAPI.logout()
+            .then(data => {
+                if(data.resultCode === 0){
+                    dispatch(setUsersData(null, null, null, false))
                 }
             });
     }

@@ -34,6 +34,9 @@ export const FollowUnfollowAPI = {
 export const AuthAPI = {
     auth(){
         return axiosInstans.get('auth/me')
+            .then(response =>{
+                return response.data;
+            })
     },
     login(email,password,rememberMe = false){
         return axiosInstans.post('auth/login',{email,password,rememberMe})
