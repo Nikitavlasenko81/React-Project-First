@@ -14,17 +14,18 @@ const ProfileStatusWithHooks = (props) => {
         setEditMode(false)
         props.updateUserStatus(status);
     }
-    const onStatusChange = (e)=>{
-        setStatus (e.currentTarget.value)
+    const onStatusChange = (e) => {
+        setStatus(e.currentTarget.value)
     }
-return (
-    <Row>{
-        !editMode === true
-            ? <Col><p onDoubleClick={activeEditMode}>{props.status || "Change status"}</p></Col>
-            : <Col> <input onChange={onStatusChange} onBlur={deactivateEditMode} autoFocus={true} value={status} /></Col>
-    }
-    </Row>
-)
+    return (
+        <Row>{
+            !editMode === true
+                ? <Col><p onDoubleClick={activeEditMode}>{props.status || "Change status"}</p></Col>
+                : <Col> <input onChange={onStatusChange} onBlur={deactivateEditMode} autoFocus={true}
+                               value={status}/></Col>
+        }
+        </Row>
+    )
 
 }
 
