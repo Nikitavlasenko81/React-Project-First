@@ -26,7 +26,7 @@ import {Form} from "react-bootstrap";
 
 const formControl= ({input, meta, ...props},as) => {
     return (
-        <div>
+        <div> 
             <Form.Control {...input} {...props} value={props.newPostText} type={props.type} as={as} placeholder={props.placeholder}
                           rows={3} isInvalid={meta.error && meta.touched}/>
             <Form.Control.Feedback type="invalid">

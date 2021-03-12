@@ -6,6 +6,7 @@ import Image from "react-bootstrap/Image";
 import Preloader from "../../common/Preloader";
 import defoultPhoto from "../../../assets/images/defoultUser.jpg"
 import ProfileStatus from "./ProfileStatus"
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 function ProfileInfo(props) {
     if (!props.profile) {
@@ -18,7 +19,7 @@ function ProfileInfo(props) {
                 </Col>
                 <Col>
                     <h1>{props.profile.fullName}</h1>
-                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+                    <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
                     <p>{props.profile.aboutMe}</p>
                     <ul>
                         <li>

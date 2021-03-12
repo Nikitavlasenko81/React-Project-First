@@ -104,10 +104,11 @@ export function toggleFollowingProgress(isFetching) {
 }
 // Thaunk Creators
 
-export function getUsers(currentPage,pageSize) {
+export function requestUsers(page,pageSize) {
     return (dispatch)=>{
         dispatch(toggleIsFetching(true));
-        UserAPI.getUsers(currentPage,pageSize)
+        dispatch(setCurrentPage(page));
+        UserAPI.getUsers(page,pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false));
                 dispatch(setUsers(data.items));
