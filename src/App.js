@@ -17,7 +17,6 @@ import {connect} from "react-redux";
 import {Route, withRouter} from "react-router-dom";
 import {initializeApp} from "./Redux/app-reducer";
 import Spinner from "react-bootstrap/Spinner";
-import {logout} from "./Redux/auth-reducer";
 
 class App extends Component {
     componentDidMount() {

@@ -11,13 +11,12 @@ import {login} from "../../Redux/auth-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoс/withAuthRedirect";
-import Dialogs from "../Dialogs/Dialogs";
 import Redirect from "react-router-dom/es/Redirect";
 import Alert from "react-bootstrap/Alert";
 
-function LoginForm(props) {
+function LoginForm({handleSubmit,error,...props}) {
     return (
-        <Form onSubmit={props.handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Field placeholder={"Login"} name={"login"} type={"email"} validate={[required]} component={Input}/>
@@ -33,8 +32,8 @@ function LoginForm(props) {
             <Form.Group controlId="formBasicCheckbox">
                 <Field component={"input"} name={"rememberMe"} type={"checkbox"}/> remember me
             </Form.Group>
-            <Alert show={!!props.error} variant={"danger"}>
-                {props.error}
+            <Alert show={!!error} variant={"danger"}>
+                {error}
             </Alert>
             <Button type="submit" variant="primary" type="submit" size="lg" block>
                 Submit
