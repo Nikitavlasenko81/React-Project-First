@@ -1,7 +1,9 @@
 import React from "react";
-import {Col, Row} from "reactstrap/es";
+
 import Paginator from "../common/Paginator/Paginator";
 import User from "./User/User";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 
 let Users = (props) => {
@@ -18,8 +20,8 @@ let Users = (props) => {
             </Row>
             <Row>
                 <Col sm={12}>
-                    <Row>
-                        <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
+                    <Row className="justify-content-md-center">
+                        <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged} portionSize={15}/>
                     </Row>
                 </Col>
             </Row>

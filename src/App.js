@@ -13,10 +13,11 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {compose} from "redux";
-import {connect} from "react-redux";
-import {Route, withRouter} from "react-router-dom";
+import {connect, Provider} from "react-redux";
+import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import {initializeApp} from "./Redux/app-reducer";
 import Spinner from "react-bootstrap/Spinner";
+import store from "./Redux/redux-store";
 
 class App extends Component {
     componentDidMount() {
@@ -61,7 +62,21 @@ const mapStateToProps = (state)=>{
     })
 }
 
-export default compose(
+let AppContainer = compose(
     withRouter,
     connect(mapStateToProps, {initializeApp}))
     (App);
+
+const SocialNetworkApp = ()=>{
+   return(
+       <BrowserRouter>
+           <Provider store={store}>
+               <React.StrictMode>
+                   {/*<App dispatch = {store.dispatch.bind(store)} store = {store}/>*/}
+                   <AppContainer dispatch = {store.dispatch.bind(store)} store = {store}/>
+               </React.StrictMode>,
+           </Provider>
+       </BrowserRouter>
+       )
+}
+export default SocialNetworkApp

@@ -11,7 +11,7 @@ import {login} from "../../Redux/auth-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoс/withAuthRedirect";
-import Redirect from "react-router-dom/es/Redirect";
+import Redirect from "react-router-dom/Redirect";
 import Alert from "react-bootstrap/Alert";
 
 function LoginForm({handleSubmit,error,...props}) {

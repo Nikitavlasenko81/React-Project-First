@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from "./Profile";
 import {getUserProfile, getUserStatus, updateUserStatus,} from "../../Redux/profile-reducer";
-import withRouter from "react-router-dom/es/withRouter";
+import withRouter from "react-router-dom/withRouter";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoс/withAuthRedirect";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import {Col, Row} from "reactstrap/es";
+import {Col, Row} from "reactstrap";
 import Button from "react-bootstrap/Button";
 import defoultPhoto from "../../../assets/images/defoultUser.jpg"
 import Image from "react-bootstrap/Image";
@@ -25,7 +25,7 @@ const User = ({user,...props})=> {
                     <Card.Body>
                         <Card.Title>{user.name}</Card.Title>
                         <Card.Text>
-                            {user.status}
+                            {user.status && "No status"}
                         </Card.Text>
                         <Row>
                             <Col md={4}>

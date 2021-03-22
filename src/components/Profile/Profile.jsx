@@ -2,7 +2,6 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostContainer from "./MyPosts/MyPostContainer";
-import Redirect from "react-router-dom/es/Redirect";
 
 function Profile(props) {
     return (
@@ -12,8 +11,7 @@ function Profile(props) {
                 profile={props.profile} status={props.status}
                 updateUserStatus={props.updateUserStatus}
             />
-            <div><MyPostContainer store={props.store}/>
-            </div>
+            <div><MyPostContainer store={props.store}/></div>
         </div>
     )
 }
