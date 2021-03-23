@@ -1,9 +1,9 @@
 import './App.css';
-import React, {Component} from "react";
+import React, {Component, Suspense} from "react";
 import "./App.css";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+// import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import Navigation from "./components/Navigation/Navigation";
 import Container from "react-bootstrap/Container";
@@ -18,6 +18,9 @@ import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import {initializeApp} from "./Redux/app-reducer";
 import Spinner from "react-bootstrap/Spinner";
 import store from "./Redux/redux-store";
+import withSuspense from "./hoс/withSuspense";
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class App extends Component {
     componentDidMount() {
@@ -43,7 +46,7 @@ class App extends Component {
                         <Navigation/>
                     </Col>
                     <Col sm={9} lg={10} className="page">
-                        <Route path="/dialogs" render={() => <DialogsContainer store={this.props.store}/>}/>
+                        <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>                                {/* used here lazyLoad end Suspense in hoc */}
                         <Route path="/profile/:userId?" render={() => <ProfileContainer store={this.props.store}/>}/>
                         <Route path="/users" render={() => <UsersContainer/>}/>
                         <Route path="/news" component={News}/>
