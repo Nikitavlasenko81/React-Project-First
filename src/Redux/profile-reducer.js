@@ -48,6 +48,12 @@ function profileReducer(state = initialState, action) {
                 status: action.status,
             };
         }
+        case "SAVE-PHOTO-SUCCESS":{
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos},
+            };
+        }
         default:
             return state
     }
@@ -71,6 +77,12 @@ export function setUserStatus(status) {
     return {
         type: "SET-USER-STATUS",
         status,
+    }
+}
+export function savePhotoSuccess(photos) {
+    return {
+        type: "SAVE-PHOTO-SUCCESS",
+        photos,
     }
 }
 // Thaunk Creators
@@ -97,6 +109,16 @@ export function updateUserStatus(status) {
             .then(response => {
                 if (response.data.resultCode === 0){
                     dispatch(setUserStatus(status));
+                }
+            });
+    }
+}
+export function savePhoto(file) {
+    return (dispatch) =>{
+        ProfileAPI.savePhoto(file)
+            .then(response => {
+                if (response.data.resultCode === 0){
+                    dispatch(savePhotoSuccess(response.data.data.photos));
                 }
             });
     }

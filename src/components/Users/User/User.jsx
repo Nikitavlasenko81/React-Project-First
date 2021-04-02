@@ -25,7 +25,7 @@ const User = ({user,...props})=> {
                     <Card.Body>
                         <Card.Title>{user.name}</Card.Title>
                         <Card.Text>
-                            {user.status && "No status"}
+                            {user.status || "No status"}
                         </Card.Text>
                         <Row>
                             <Col md={4}>

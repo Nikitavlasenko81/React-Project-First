@@ -10,6 +10,8 @@ function Profile(props) {
                 infoData={props.store.getState().profilePage.infoData}
                 profile={props.profile} status={props.status}
                 updateUserStatus={props.updateUserStatus}
+                isOwner={props.isOwner}
+                savePhoto={props.savePhoto}
             />
             <div><MyPostContainer store={props.store}/></div>
         </div>

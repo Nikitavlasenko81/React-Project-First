@@ -12,10 +12,16 @@ function ProfileInfo(props) {
     if (!props.profile) {
         return <Preloader/>
     } else {
+        const onMainPhotoSelected = (e)=>{
+           if(e.target.files.length){
+               props.savePhoto(e.target.files[0])
+           }
+        }
         return (
             <Row>
                 <Col className="text-center" lg={5}>
                     <Image src={props.profile.photos.large === null ? defoultPhoto : props.profile.photos.large} roundedCircle style={{ width: '20rem' }}/>
+                    {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/> }
                 </Col>
                 <Col>
                     <h1>{props.profile.fullName}</h1>
